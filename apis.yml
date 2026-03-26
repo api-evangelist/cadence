@@ -1,11 +1,20 @@
 aid: cadence
 name: Cadence
 description: >-
-  Cadence is a distributed, scalable, durable, and highly available orchestration engine from Uber for executing asynchronous long-running business logic.
+  Cadence is a distributed, scalable, durable, and highly available orchestration
+  engine from Uber for executing asynchronous long-running business logic in a
+  scalable and resilient way, with official support for Go and Java SDKs.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - Workflow Orchestration
   - Microservices
+  - Distributed Systems
+  - Uber
+  - Go
+  - Java
+  - Asynchronous
+  - Long-Running Workflows
 url: >-
   https://raw.githubusercontent.com/api-evangelist/cadence/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +24,37 @@ apis:
   - aid: cadence:cadence
     name: Cadence
     description: >-
-      Cadence is a distributed, scalable, durable, and highly available orchestration engine from Uber for executing asynchronous long-running business logic.
-    humanURL: https://github.com/api-evangelist/cadence
+      Cadence is a distributed, scalable, durable, and highly available
+      orchestration engine from Uber for executing asynchronous long-running
+      business logic in a scalable and resilient way.
+    humanURL: https://cadenceworkflow.io/
     tags:
+      - Workflow Orchestration
       - Microservices
+      - Distributed Systems
+      - Uber
+      - Go
+      - Java
+      - Asynchronous
+      - Long-Running Workflows
     properties: []
 common:
   - type: Website
-    url: https://github.com/api-evangelist/cadence
+    url: https://cadenceworkflow.io/
+  - type: Documentation
+    url: https://cadenceworkflow.io/docs/get-started/
+  - type: Getting Started
+    url: https://cadenceworkflow.io/docs/get-started/
+  - type: GitHub
+    url: https://github.com/cadence-workflow/cadence
+  - type: GitHub Org
+    url: https://github.com/cadence-workflow
+  - type: Docker
+    url: https://hub.docker.com/r/ubercadence/server
+  - type: Issues
+    url: https://github.com/cadence-workflow/cadence/issues
+  - type: Releases
+    url: https://github.com/cadence-workflow/cadence/releases
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
