@@ -37,7 +37,9 @@ apis:
       - Java
       - Asynchronous
       - Long-Running Workflows
-    properties: []
+    properties:
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/cadence/refs/heads/main/openapi/cadence-api.yml
 common:
   - type: Website
     url: https://cadenceworkflow.io/
