@@ -55,6 +55,8 @@ apis:
       products, support, community, investor, newsroom, and careers
       properties are published online.
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/cadence-design-systems
   - type: Website
     url: https://www.cadence.com
   - type: Products
