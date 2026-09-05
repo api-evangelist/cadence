@@ -1,0 +1,95 @@
+# Cadence Design Systems
+
+> Cadence Design Systems (Nasdaq: CDNS) is a multinational electronic design
+> automation (EDA) software and hardware company. Its portfolio spans integrated
+> circuit, system-on-chip, printed circuit board and system design — Virtuoso,
+> Spectre, Genus, Innovus, JasperGold, Xcelium, Palladium, Allegro X, OrCAD X,
+> Fidelity CFD — plus computational biology through OpenEye, Cadence Molecular
+> Sciences, acquired in 2022.
+
+generated: 2026-09-05
+method: generated
+source: all/cadence/apis.yml plus the artifacts in this repository
+license: CC BY-NC-SA (artifacts) / Apache-2.0 (code)
+
+## What is callable
+
+Cadence's flagship EDA tools are licensed desktop and compute software driven by
+SKILL and Tcl scripting inside the installed product; they are not network APIs
+and Cadence publishes no contract for them. Two HTTPS APIs and one identity
+surface are real, reachable and documented, and one desktop scripting API is
+distributed as a public Python package:
+
+- Orion Molecular Design Platform API — https://orion.eyesopen.com
+  Token-authenticated. The published interface is the `orionclient` Python
+  library and the `ocli` CLI, not a REST reference. Programming guide:
+  https://docs.eyesopen.com/orion-developer/index.html
+- MMDS — Macromolecular Data Service — https://mmds.eyesopen.com/api/v1/
+  A live JSON API (Django REST Framework). Every path is authentication-gated;
+  an anonymous GET returns 403 {"detail":"Authentication credentials were not
+  provided."}. Client API: https://docs.eyesopen.com/webservices/mmds/client.html
+- Cadence Online Support OpenID Connect provider — https://support.cadence.com
+  Discovery: https://support.cadence.com/.well-known/openid-configuration
+- Fidelity Pointwise Glyph Server — a scripting API on a running Pointwise
+  session, reached with the `pointwise-glyph-client` Python package.
+
+## What is NOT published
+
+- No OpenAPI, Swagger, GraphQL SDL, AsyncAPI, protobuf or WSDL contract on any
+  Cadence or eyesopen host. Probed 2026-09-05; see conformance/.
+- No MCP server, no A2A agent card, no webhook or event surface.
+- No public plans, prices, quotas or rate limits — every commercial path is a quote.
+- No status page, no SLA, no deprecation policy, no error-code reference.
+- No security.txt and no api-catalog on any host.
+
+## Documentation
+
+- OpenEye / Cadence Molecular Sciences documentation hub: https://docs.eyesopen.com/
+- Orion Programming Guide: https://docs.eyesopen.com/orion-developer/index.html
+- Orion CLI (`ocli`) command reference: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+- Orion user interface guide: https://docs.eyesopen.com/orion-user-interface/index.html
+- OpenEye Toolkits — Python: https://docs.eyesopen.com/toolkits/python/index.html
+- OpenEye Toolkits — C++: https://docs.eyesopen.com/toolkits/cpp/index.html
+- OpenEye Toolkits — Java: https://docs.eyesopen.com/toolkits/java/index.html
+- OpenEye Toolkits — C#: https://docs.eyesopen.com/toolkits/csharp/index.html
+- MMDS — Macromolecular Data Service: https://docs.eyesopen.com/webservices/mmds/
+- Floe guide: https://docs.eyesopen.com/floe/index.html
+
+## Releases
+
+- Orion release notes (2019.2.1 → 2026.4): https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html
+- OEApplications release notes: https://docs.eyesopen.com/applications/releasenotes/index.html
+- OpenEye Toolkits highlights: https://docs.eyesopen.com/toolkits/python/releasenotes/highlights.html
+- Supported platforms policy: https://www.eyesopen.com/supported-platforms
+
+## Packages
+
+- pointwise-glyph-client (PyPI, official, 2.0.13, 2024-09-11): https://pypi.org/project/pointwise-glyph-client/
+- Source: https://github.com/pointwise/GlyphClientPython
+- GitHub organization "Cadence Design Systems, Inc." (Fidelity Pointwise, 89 repos): https://github.com/pointwise
+- OpenEye Toolkits, Orion Platform and mmdsclient are distributed from OpenEye's
+  own credentialed package channel under a commercial licence — not from PyPI,
+  Maven Central or NuGet.
+
+## Company
+
+- Website: https://www.cadence.com
+- Products: https://www.cadence.com/en_US/home/tools.html
+- Support portal: https://support.cadence.com
+- Community: https://community.cadence.com
+- OnCloud marketplace: https://oncloud.cadence.com/
+- Cloud security technical brief: https://www.cadence.com/en_US/home/resources/technical-briefs/cloud-security-tb.html
+- Investor relations: https://investor.cadence.com
+- Newsroom: https://www.cadence.com/en_US/home/company/newsroom.html
+- Careers: https://www.cadence.com/en_US/home/company/careers.html
+- Privacy: https://www.cadence.com/en_US/home/privacy-policy.html
+- Terms of use: https://www.cadence.com/en_US/home/terms-of-use.html
+- OpenEye, Cadence Molecular Sciences: https://www.eyesopen.com
+- Orion platform: https://www.eyesopen.com/orion/platform
+
+## Crawler note
+
+cadence.com, www.cadence.com and community.cadence.com sit behind a Cloudflare
+bot challenge that answers 403 to non-browser clients on every path. Those pages
+exist and are served to browsers; a 403 recorded in this repository against a
+cadence.com URL means our crawler was turned away, not that the page is gone.

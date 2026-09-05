@@ -1,0 +1,120 @@
+generated: '2026-09-05'
+method: probed
+source: live HTTPS probes of every host in apis.yml plus the eyesopen.com API/docs hosts
+description: >-
+  Named /.well-known/ discovery probes across every host the Cadence Design
+  Systems record knows. One real document was found: support.cadence.com serves
+  an RFC 8414 / OpenID Connect discovery document for Cadence Online Support
+  (issuer https://support.cadence.com, a Salesforce Experience Cloud identity
+  provider). Everything else 404s, is answered by an SPA/portal catch-all, or is
+  turned away by Cloudflare's bot challenge on the cadence.com edge.
+probed: '2026-09-05'
+notes:
+  - >-
+    cadence.com, www.cadence.com and community.cadence.com sit behind a
+    Cloudflare interstitial that answers 403 with a "Just a moment..." HTML body
+    to a non-browser client on EVERY path, including paths that would 404. These
+    are recorded as 403 and are NOT evidence that the documents are absent — nor
+    that they are present.
+  - >-
+    support.cadence.com is a Salesforce Experience Cloud portal that answers 200
+    with a Visualforce HTML shell for any unknown path. Only the
+    openid-configuration response carries application/json and a real document;
+    the other 200s on that host are soft-404s and are recorded as misses.
+  - >-
+    investor.cadence.com answers 200 with the body "Invalid key" for any unknown
+    path — another soft-404, recorded as a miss.
+
+hosts:
+  - host: support.cadence.com
+    documents:
+      - {path: /.well-known/openid-configuration, status: 200, file: cadence-support-openid-configuration.json, content_type: application/json, document: true}
+      - {path: /.well-known/security.txt, status: 200, file: null, content_type: text/html, document: false, note: Visualforce HTML shell, soft-404}
+      - {path: /.well-known/oauth-authorization-server, status: 200, file: null, content_type: text/html, document: false, note: Visualforce HTML shell, soft-404}
+      - {path: /.well-known/api-catalog, status: 200, file: null, content_type: text/html, document: false, note: Visualforce HTML shell, soft-404}
+      - {path: /.well-known/ai-plugin.json, status: 200, file: null, content_type: text/html, document: false, note: Visualforce HTML shell, soft-404}
+      - {path: /.well-known/agent-card.json, status: 200, file: null, content_type: text/html, document: false, note: Visualforce HTML shell, soft-404 — not an agent card}
+  - host: www.cadence.com
+    documents:
+      - {path: /.well-known/security.txt, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/openid-configuration, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/oauth-authorization-server, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/api-catalog, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/ai-plugin.json, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/agent-card.json, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/agent.json, status: 403, file: null, note: Cloudflare bot challenge}
+  - host: cadence.com
+    documents:
+      - {path: /.well-known/security.txt, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/openid-configuration, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/oauth-authorization-server, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/api-catalog, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/ai-plugin.json, status: 403, file: null, note: Cloudflare bot challenge}
+  - host: community.cadence.com
+    documents:
+      - {path: /.well-known/security.txt, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/openid-configuration, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/oauth-authorization-server, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/api-catalog, status: 403, file: null, note: Cloudflare bot challenge}
+      - {path: /.well-known/ai-plugin.json, status: 403, file: null, note: Cloudflare bot challenge}
+  - host: oncloud.cadence.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+      - {path: /.well-known/agent-card.json, status: 404, file: null}
+      - {path: /.well-known/agent.json, status: 404, file: null}
+  - host: investor.cadence.com
+    documents:
+      - {path: /.well-known/security.txt, status: 200, file: null, document: false, note: 'body is "Invalid key" — soft-404'}
+      - {path: /.well-known/openid-configuration, status: 200, file: null, document: false, note: 'body is "Invalid key" — soft-404'}
+      - {path: /.well-known/oauth-authorization-server, status: 200, file: null, document: false, note: 'body is "Invalid key" — soft-404'}
+      - {path: /.well-known/api-catalog, status: 200, file: null, document: false, note: 'body is "Invalid key" — soft-404'}
+      - {path: /.well-known/ai-plugin.json, status: 200, file: null, document: false, note: 'body is "Invalid key" — soft-404'}
+  - host: www.eyesopen.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+      - {path: /.well-known/agent-card.json, status: 404, file: null}
+      - {path: /.well-known/agent.json, status: 404, file: null}
+  - host: eyesopen.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+      - {path: /.well-known/agent-card.json, status: 404, file: null}
+      - {path: /.well-known/agent.json, status: 404, file: null}
+  - host: docs.eyesopen.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+      - {path: /.well-known/agent-card.json, status: 404, file: null}
+      - {path: /.well-known/agent.json, status: 404, file: null}
+  - host: orion.eyesopen.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/oauth-protected-resource, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+      - {path: /.well-known/agent-card.json, status: 404, file: null}
+      - {path: /.well-known/agent.json, status: 404, file: null}
+  - host: mmds.eyesopen.com
+    documents:
+      - {path: /.well-known/security.txt, status: 404, file: null}
+      - {path: /.well-known/openid-configuration, status: 404, file: null}
+      - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+      - {path: /.well-known/api-catalog, status: 404, file: null}
+      - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+      - {path: /.well-known/agent-card.json, status: 404, file: null}

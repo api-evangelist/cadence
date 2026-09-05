@@ -1,0 +1,181 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html ·
+  https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html
+description: >-
+  Cross-cutting runtime semantics for the callable Cadence surfaces. Cadence
+  publishes no OpenAPI, so these conventions are read from the Orion CLI/client
+  reference — the only place the provider documents how its API behaves across
+  operations — plus a live probe of the MMDS REST API. Where the provider states
+  nothing, the field says so instead of carrying an assumption.
+
+base_urls:
+  orion: https://orion.eyesopen.com
+  mmds: https://mmds.eyesopen.com/api/v1/
+api_style: >-
+  HTTPS JSON APIs consumed through first-party client libraries (orionclient,
+  mmdsclient) and the `ocli` CLI. No REST reference is published; the client
+  library IS the published interface.
+
+authentication:
+  scheme: Account-issued API token (Orion), reused as `orion_credentials` by MMDS.
+  detail: authentication/cadence-authentication.yml
+  docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+
+idempotency:
+  supported: false
+  coverage: none
+  mechanism: null
+  scope: []
+  evidence: >-
+    No Idempotency-Key header, request-id replay, or client-token mechanism
+    appears anywhere in the Orion Programming Guide, the OCLI reference or the
+    MMDS client documentation. Retries are handled purely client-side
+    (`--max-retries`, default 2, exponential backoff), which retries the request
+    rather than deduplicating it, so a retried mutating call can be applied twice.
+  docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+
+dry_run_mode:
+  supported: partial
+  mechanism: "`ocli rm --dry-run <paths>` runs a delete as a dry run."
+  scope:
+    - ocli rm
+  note: >-
+    The only documented rehearsal flag in the whole CLI surface. Job starts,
+    uploads, dataset/collection deletes, database creates and sharing changes
+    have no dry-run option.
+  docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+
+reversibility:
+  grade: documented
+  summary: >-
+    Two genuine reversal paths are documented — cancelling a running job and a
+    soft delete that `--immediate` opts out of — but the provider never states a
+    restore operation or the window inside which a soft-deleted item can be
+    recovered, so this grades `documented` (a reversal path exists) rather than
+    `verified` (a reversal path with a stated window).
+  write_surfaces:
+    - surface: Start a job from a workfloe
+      write: ocli jobs start
+      reversal: ocli jobs cancel
+      window: null
+      window_note: No time limit is stated; a job can be cancelled while it is running.
+      docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+    - surface: Delete a dataset
+      write: ocli datasets delete
+      reversal: >-
+        Deletes are soft by default — `--immediate` is an explicit opt-out, and
+        `ocli datasets list deleted=true` can still see deleted datasets. No
+        undelete/restore command is documented.
+      window: null
+      window_note: >-
+        `ocli ls` documents an `expired` filter as "(default: False) List items
+        that are deleted for more than 30 days", which implies a 30-day
+        soft-delete horizon. The docs never state that as a recovery guarantee
+        and publish no restore operation, so no window is asserted here.
+      docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+    - surface: Delete a file / collection / project
+      write: ocli files delete · ocli collections delete · ocli projects delete
+      reversal: >-
+        Same soft-delete shape (`deleted=true` filters exist on files,
+        collections and projects); no restore command is published.
+      window: null
+    - surface: Share / unshare a resource
+      write: ocli <resource> share
+      reversal: ocli <resource> unshare
+      window: null
+      window_note: Sharing is symmetric and fully reversible at any time.
+    - surface: Open a collection for writing
+      write: ocli collections open
+      reversal: ocli collections close
+      window: null
+    - surface: Create an API token
+      write: ocli tokens create
+      reversal: ocli tokens delete
+      window: null
+  not_reversible:
+    - "`ocli datasets delete --immediate` — an explicit hard delete."
+    - "`ocli jobs delete_logs` — no restore path documented."
+    - "`ocli molsearch db delete` — no restore path documented."
+
+pagination:
+  style: offset
+  request_params:
+    limit: Number of objects to list.
+    offset: Offset from the start of the list.
+    order_by: "Field to order results by (e.g. name, id, created, type, recently_used)."
+  filters: >-
+    List commands take key=value filters — name, name_contains, name_icontains,
+    path_contains, types, tags, tag_filters, systag_filters, tag_match, states,
+    deleted, expired, owner, project, workfloe, job_type.
+  response_fields: >-
+    Not published — the CLI renders results and `--json` emits them as JSON, but
+    the envelope shape of the underlying API is not documented.
+  docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+
+resource_identifiers:
+  scheme: >-
+    Typed URI prefixes address items directly — file://<id>, dataset://<id>,
+    collection://<id> — alongside virtual filesystem paths of the form
+    /project/<project-id>/user/<username>/<path>,
+    /project/<project-id>/team/<path>,
+    /project/<project-id>/workspace/<workspace-id>/<path> and /organization/<path>.
+
+tagging_and_metadata:
+  supported: true
+  mechanism: >-
+    Datasets, files, collections and jobs carry user tags (`tag`/`untag`/
+    `list-tags`) and system tags; both are filterable on list operations
+    (tags=, tag_filters=, systag_filters=, tag_match=iexact).
+
+timeouts_and_retries:
+  client_timeout_default_seconds: 10
+  server_max_timeout_seconds: 60
+  server_max_timeout_quote: All requests to the Orion API have a maximum timeout of 60 seconds.
+  retries: "`--max-retries` (default 2) retries on connection failure or a 404, with exponential backoff. Shard uploads and downloads are unaffected."
+  docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+
+machine_output:
+  flag: --json
+  description: "`ocli --json <command>` returns JSON rather than plain text, making results parseable."
+
+versioning:
+  scheme: Calendar-style YYYY.N releases per product line.
+  current:
+    orion: 2026.4 (Programming Guide 2026.4.1)
+    openeye_toolkits: 2026.1.0
+    openeye_applications: '2026.1'
+    mmds: 1.1.7
+  api_versioning: >-
+    MMDS carries a path version segment (/api/v1/). Orion's API is not
+    independently versioned in public documentation; the platform release
+    version is the version.
+  detail: lifecycle/cadence-lifecycle.yml
+
+error_envelope:
+  format: >-
+    MMDS returns a Django REST Framework JSON envelope — {"detail": "..."} —
+    observed live on 2026-09-05 at https://mmds.eyesopen.com/api/v1/auth/ (403).
+  problem_json: false
+  client_exceptions: >-
+    The MMDS client API documents typed exceptions raised by its methods:
+    InvalidCredentials, ValidationError and BadResponse.
+  catalog: >-
+    No error-code reference is published for any Cadence surface, so no
+    errors/ artifact is emitted rather than one being invented.
+
+rate_limit_signaling:
+  headers: none published
+  status_on_exhaustion: not published
+  detail: rate-limits/cadence-rate-limits.yml
+
+security_headers_observed:
+  host: mmds.eyesopen.com
+  observed: '2026-09-05'
+  strict_transport_security: max-age=31536000; includeSubDomains
+  x_content_type_options: nosniff
+  content_security_policy: >-
+    img-src data: blob: 'self'; style-src 'self' 'unsafe-inline' 'unsafe-eval';
+    frame-ancestors 'self' orion.eyesopen.com; script-src 'self' 'unsafe-inline'
+    'unsafe-eval'; default-src 'self'

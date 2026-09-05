@@ -1,0 +1,134 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://pypi.org/project/pointwise-glyph-client/ · https://github.com/pointwise ·
+  https://docs.eyesopen.com/orion-developer/index.html · https://docs.eyesopen.com/toolkits/python/index.html
+description: >-
+  First-party client libraries published by Cadence Design Systems and its
+  business units. Cadence's EDA tools (Virtuoso, Allegro X, OrCAD X, Xcelium,
+  Innovus) are licensed desktop/compute software scripted with SKILL and Tcl,
+  not distributed as public package-registry SDKs. The two package surfaces that
+  ARE public or documented belong to Fidelity Pointwise (CFD meshing, the
+  github.com/pointwise org whose GitHub display name is "Cadence Design Systems,
+  Inc.") and to OpenEye, Cadence Molecular Sciences (eyesopen.com, acquired by
+  Cadence in 2022 and rebranded under the Cadence name — docs.eyesopen.com pages
+  carry "© Copyright 2026, Cadence Design Systems, Inc.").
+ownership_note: >-
+  eyesopen.com and github.com/pointwise are not cadence.com, but both are Cadence
+  Design Systems property: github.com/pointwise names "Cadence Design Systems,
+  Inc." as the org owner and links to the Cadence Fidelity Pointwise product
+  page, and docs.eyesopen.com carries a Cadence Design Systems copyright notice.
+
+packages:
+  - name: pointwise-glyph-client
+    registry: pypi
+    url: https://pypi.org/project/pointwise-glyph-client/
+    version: 2.0.13
+    published: '2024-09-11'
+    language: python
+    official: true
+    publisher: Cadence Design Systems, Inc. <pw-pypi@cadence.com>
+    source: https://github.com/pointwise/GlyphClientPython
+    description: >-
+      Python client with a Python-like API to the Pointwise/Fidelity Glyph
+      Server — the scripting API of Cadence Fidelity Pointwise CFD meshing.
+    note: >-
+      Registry metadata read from registry endpoint pypi.org/pypi/pointwise-glyph-client/json
+      on 2026-09-05. Latest release 2.0.13 (2024-09-11); prior releases 2.0.12
+      (2024-08-09), 2.0.11 (2023-12-11), 2.0.10 (2022-12-14). The upstream repo
+      github.com/pointwise/GlyphClientPython was last pushed 2024-09-11, so the
+      package and its source are in step but the line has been quiet for a year.
+
+  - name: OpenEye Toolkits (Python)
+    registry: vendor
+    url: https://docs.eyesopen.com/toolkits/python/index.html
+    version: 2026.1.0
+    published: null
+    language: python
+    official: true
+    publisher: OpenEye, Cadence Molecular Sciences
+    description: >-
+      Cheminformatics and molecular-modeling toolkits (OEChem TK, Omega TK,
+      Shape TK, Grapheme TK, Spruce TK, Quacpac TK, Zap TK, Szybki TK and
+      others) exposed as a Python API.
+    note: >-
+      Not on PyPI — distributed from OpenEye's own credentialed pip/conda channel
+      under a commercial licence, so there is no public registry metadata
+      endpoint to date the release. Version 2026.1.0 read from the documentation
+      title at docs.eyesopen.com/toolkits/python/index.html on 2026-09-05;
+      published date is unstated by the provider, recorded as null rather than
+      guessed.
+
+  - name: OpenEye Toolkits (C++)
+    registry: vendor
+    url: https://docs.eyesopen.com/toolkits/cpp/index.html
+    version: 2026.1.0
+    published: null
+    language: cpp
+    official: true
+    publisher: OpenEye, Cadence Molecular Sciences
+    note: Credentialed vendor distribution; no public registry, no published release date.
+
+  - name: OpenEye Toolkits (Java)
+    registry: vendor
+    url: https://docs.eyesopen.com/toolkits/java/index.html
+    version: 2026.1.0
+    published: null
+    language: java
+    official: true
+    publisher: OpenEye, Cadence Molecular Sciences
+    note: >-
+      Credentialed vendor distribution, not Maven Central; no public registry
+      metadata endpoint, so no release date is recorded.
+
+  - name: OpenEye Toolkits (C#)
+    registry: vendor
+    url: https://docs.eyesopen.com/toolkits/csharp/index.html
+    version: 2026.1.0
+    published: null
+    language: csharp
+    official: true
+    publisher: OpenEye, Cadence Molecular Sciences
+    note: Credentialed vendor distribution, not NuGet; no public registry metadata.
+
+  - name: Orion Platform (orionplatform / orionclient)
+    registry: vendor
+    url: https://docs.eyesopen.com/orion-developer/index.html
+    version: 2026.4.1
+    published: null
+    language: python
+    official: true
+    publisher: OpenEye, Cadence Molecular Sciences
+    description: >-
+      The Orion Molecular Design Platform Python package — cube/floe authoring
+      (orionplatform), the Orion client library (orionclient) used to call the
+      Orion API with a token, and the `ocli` command line interface it installs.
+    note: >-
+      Installed from OpenEye's credentialed package channel, not PyPI (the PyPI
+      names `orionclient` and `openeye-toolkits` are unrelated third-party or
+      absent). Version 2026.4.1 read from the Orion Programming Guide title on
+      2026-09-05; release date not published, recorded as null.
+
+  - name: mmdsclient
+    registry: vendor
+    url: https://docs.eyesopen.com/webservices/mmds/client.html
+    version: 1.1.7
+    published: null
+    language: python
+    official: true
+    publisher: OpenEye, Cadence Molecular Sciences
+    description: >-
+      Python client and `mmdscli` CLI for MMDS, the Macromolecular Data Service
+      REST API at mmds.eyesopen.com.
+    note: >-
+      Version 1.1.7 read from the MMDS documentation title
+      ("MMDS - Macromolecular Data Service 1.1.7 documentation") on 2026-09-05.
+      Credentialed vendor distribution; no registry, no published date.
+
+registries_checked:
+  - {registry: pypi, result: "one first-party package found (pointwise-glyph-client); `openeye-toolkits`, `openeye`, `openeye-orionplatform`, `orionplatform` all 404; `orionclient` and `pointwise` on PyPI are unrelated third-party projects"}
+  - {registry: npm, result: "no first-party Cadence/OrCAD/Allegro/Pointwise/OpenEye package found in registry search"}
+  - {registry: rubygems, result: not searched — no Ruby surface documented}
+  - {registry: crates.io, result: not searched — no Rust surface documented}
+  - {registry: maven-central, result: "OpenEye Java toolkits are vendor-distributed under licence, not published to Maven Central"}
+  - {registry: nuget, result: "OpenEye C# toolkits are vendor-distributed under licence, not published to NuGet"}

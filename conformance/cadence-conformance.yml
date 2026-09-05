@@ -1,0 +1,198 @@
+generated: '2026-09-05'
+method: probed
+source: >-
+  https://support.cadence.com/.well-known/openid-configuration ·
+  https://mmds.eyesopen.com/api/v1/auth/ ·
+  https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html ·
+  https://www.cadence.com/en_US/home/resources/technical-briefs/cloud-security-tb.html
+description: >-
+  Cross-cutting and industry standards Cadence Design Systems can be shown to
+  conform to, each with the evidence that establishes it. Reward-only: a `false`
+  entry records a standard that was checked and not found, not a penalty.
+checked: '2026-09-05'
+
+conformance:
+  - id: oidc
+    name: OpenID Connect Discovery 1.0
+    conforms: true
+    evidence: >-
+      https://support.cadence.com/.well-known/openid-configuration returned HTTP
+      200 application/json on 2026-09-05 with issuer, authorization_endpoint,
+      token_endpoint, userinfo_endpoint, jwks_uri, response_types_supported,
+      subject_types_supported and id_token_signing_alg_values_supported —
+      every OIDC Discovery required field. Saved verbatim to
+      well-known/cadence-support-openid-configuration.json.
+    scope: Cadence Online Support portal only.
+
+  - id: oauth2
+    name: OAuth 2.0 (RFC 6749) + Authorization Server Metadata (RFC 8414)
+    conforms: true
+    evidence: >-
+      The same discovery document advertises authorize/token/revoke/introspect/
+      register endpoints, three response types, three token-endpoint auth
+      methods including private_key_jwt, and DPoP signing algorithms
+      (RFC 9449). Probed 200 on 2026-09-05.
+    scope: Cadence Online Support portal only.
+
+  - id: rfc7009-token-revocation
+    name: OAuth 2.0 Token Revocation (RFC 7009)
+    conforms: true
+    evidence: revocation_endpoint https://support.cadence.com/services/oauth2/revoke advertised in the discovery document.
+
+  - id: rfc7662-token-introspection
+    name: OAuth 2.0 Token Introspection (RFC 7662)
+    conforms: true
+    evidence: introspection_endpoint https://support.cadence.com/services/oauth2/introspect advertised in the discovery document.
+
+  - id: rfc7591-dynamic-client-registration
+    name: OAuth 2.0 Dynamic Client Registration (RFC 7591)
+    conforms: true
+    evidence: registration_endpoint https://support.cadence.com/services/oauth2/register advertised in the discovery document.
+
+  - id: rfc9449-dpop
+    name: OAuth 2.0 Demonstrating Proof of Possession (RFC 9449)
+    conforms: true
+    evidence: "dpop_signing_alg_values_supported: [RS256, RS384, RS512, ES256, ES384, ES512, EdDSA] in the discovery document."
+
+  - id: rfc6797-hsts
+    name: HTTP Strict Transport Security (RFC 6797)
+    conforms: true
+    evidence: >-
+      strict-transport-security max-age=31536000 observed on www.cadence.com
+      (security/cadence-domain-security.yml) and
+      "max-age=31536000; includeSubDomains" observed live on
+      mmds.eyesopen.com on 2026-09-05.
+
+  - id: rfc9457
+    name: Problem Details for HTTP APIs (RFC 9457 / 7807)
+    conforms: false
+    evidence: >-
+      https://mmds.eyesopen.com/api/v1/auth/ returned a Django REST Framework
+      envelope — content-type application/json, body {"detail": "..."} — not
+      application/problem+json. No error catalog is published for any surface.
+
+  - id: openapi
+    name: OpenAPI Specification
+    conforms: false
+    evidence: >-
+      No OpenAPI/Swagger document was found on any Cadence or eyesopen host.
+      Probed on 2026-09-05: orion.eyesopen.com and mmds.eyesopen.com returned
+      404 for /openapi.json, /openapi.yaml, /swagger.json, /api-docs, /docs,
+      /redoc, /v1/openapi.json and /api/openapi.json; oncloud.cadence.com
+      returned 404 or a Cloudflare challenge; docs.eyesopen.com 404s the same
+      set. The published interface is the client library, not a contract.
+
+  - id: graphql
+    name: GraphQL
+    conforms: false
+    evidence: https://orion.eyesopen.com/graphql returned 404 on 2026-09-05; no GraphQL surface is documented.
+
+  - id: asyncapi
+    name: AsyncAPI
+    conforms: false
+    evidence: >-
+      No event, webhook or streaming surface is documented for any Cadence
+      product; no /asyncapi.yaml or event catalog exists. N/A rather than a gap.
+
+  - id: mcp
+    name: Model Context Protocol
+    conforms: false
+    evidence: >-
+      No first-party Cadence MCP server was found on npm, PyPI or the provider's
+      own documentation; https://orion.eyesopen.com/mcp returned 404 on
+      2026-09-05. Third-party community MCP servers wrapping Cadence Virtuoso
+      exist but are not published by Cadence.
+
+  - id: a2a-agent-card
+    name: A2A Agent Card
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json probed on
+      www.cadence.com, cadence.com, oncloud.cadence.com, support.cadence.com,
+      www.eyesopen.com, eyesopen.com, docs.eyesopen.com, orion.eyesopen.com and
+      mmds.eyesopen.com on 2026-09-05. Every result was a 404, a Cloudflare 403,
+      or a 200 HTML portal shell. No agent card is served.
+
+  - id: soap-wsdl
+    name: SOAP / WSDL
+    conforms: false
+    evidence: "?wsdl on orion.eyesopen.com and www.eyesopen.com returned the site HTML, not a WSDL document (probed 2026-09-05)."
+
+  - id: ogc-api
+    name: OGC API / OWS
+    conforms: false
+    evidence: Not applicable — no geospatial surface; no evidence in the record or the docs pointed at an OGC endpoint, so no blind probing was performed.
+
+  - id: pagination
+    name: Documented pagination
+    conforms: true
+    evidence: >-
+      The Orion CLI reference documents offset pagination (--limit, --offset)
+      with order_by on list operations across datasets, files, collections,
+      projects, packages, workfloes, jobs, tokens, users and molecule-search
+      queries. See conventions/cadence-conventions.yml.
+
+  - id: idempotency
+    name: Idempotent request replay
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header or client-token deduplication appears anywhere in
+      the Orion Programming Guide, the OCLI reference or the MMDS client docs.
+      conventions/cadence-conventions.yml records idempotency.coverage = none.
+
+domain_standards:
+  - id: helm
+    name: HELM (Hierarchical Editing Language for Macromolecules)
+    conforms: true
+    evidence: >-
+      OpenEye Toolkits 2026.1 release highlights state that OEChem TK delivers
+      "reliable conversion between molecular structures and HELM
+      representations" with support for custom monomer dictionaries and a
+      built-in dictionary of more than 260 monomers.
+      https://docs.eyesopen.com/toolkits/python/releasenotes/highlights.html
+    market: computational chemistry / peptide informatics
+  - id: pdb-mmcif
+    name: PDB / mmCIF experimental structure formats
+    conforms: true
+    evidence: >-
+      The MMDS client API documents Experiment.add(session, code, structure,
+      meta, ...) where `code` is a "Unique structure code (normally 4-leter code
+      for public PDBs)" and `structure` is a ".pdb or .cif" filename, with
+      optional MTZ X-ray density or MAP.GZ cryo-EM map.
+      https://docs.eyesopen.com/webservices/mmds/client.html
+    market: structural biology
+  - id: smiles-smarts
+    name: SMILES / SMARTS chemical line notation
+    conforms: true
+    evidence: >-
+      `ocli molsearch query create exact <db> "CC(=O)Oc1ccccc1C(=O)O"` and
+      `ocli molsearch create substructure 1 c1cocc1 --subsearch_query_type SMARTS`
+      are published examples in the Orion CLI reference; `ocli molsearch query
+      smiles <title>` returns a SMILES string for a named molecule.
+    market: cheminformatics
+  - id: eda-standards
+    name: EDA interchange standards (IEEE 1801/UPF, Verilog/SystemVerilog, LEF/DEF, GDSII, IBIS, SPICE)
+    conforms: null
+    evidence: >-
+      NOT ESTABLISHED HERE. Cadence is a principal author and implementer of the
+      EDA standards estate, but this pipeline reads contracts, and no Cadence
+      contract on a public host declares them. Recorded as unestablished rather
+      than asserted from reputation.
+
+compliance:
+  published: true
+  url: https://www.cadence.com/en_US/home/resources/technical-briefs/cloud-security-tb.html
+  standards_named: [ISO/IEC 27001, ISO/IEC 27017, SOC 2]
+  attested: false
+  note: >-
+    Cadence publishes a Cloud Security technical brief and a Cadence OnCloud
+    Security datasheet stating that Cadence OnCloud was developed in compliance
+    with ISO/IEC 27001, ISO/IEC 27017 and SOC 2, and that Cadence is "working to
+    get an independent attestation" over its information security and privacy
+    practices for in-scope OnCloud applications. That is a compliance PROGRAM,
+    not a certificate — no certification number, audit report, or trust portal is
+    published.
+  probe:
+    - {url: 'https://www.cadence.com/en_US/home/resources/technical-briefs/cloud-security-tb.html', status: 403, note: 'Cloudflare bot challenge to our crawler; the page is indexed and served to browsers. Content read from search-engine extracts, not fetched directly — recorded as a published claim, not as a verified certificate.'}
+    - {url: 'https://www.cadence.com/en_US/home/resources/datasheets/cadence-oncloud-security-ds.html', status: 403, note: Cloudflare bot challenge}
+    - {url: 'https://trust.cadence.com/', status: 0, note: does not resolve — no trust centre subdomain}

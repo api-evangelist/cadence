@@ -1,0 +1,102 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html ·
+  https://docs.eyesopen.com/applications/releasenotes/index.html ·
+  https://docs.eyesopen.com/toolkits/python/releasenotes/highlights.html
+description: >-
+  The dated-by-version release notes Cadence publishes for the product lines that
+  have a programmable surface. The Orion Molecular Design Platform carries a
+  continuous public release-note series back to 2019.2.1; OpenEye Toolkits and
+  OEApplications carry per-release highlights plus detailed per-component notes.
+  Cadence's core EDA tools (Virtuoso, Allegro X, OrCAD X, Xcelium, Innovus)
+  publish release information behind the support.cadence.com customer portal, not
+  on a public changelog.
+docs: https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html
+scheme: Calendar versioning — YYYY.N (Orion), YYYY.N (OEToolkits / OEApplications)
+current_versions:
+  orion: '2026.4'
+  orion_programming_guide: 2026.4.1
+  openeye_toolkits_python: 2026.1.0
+  openeye_applications: '2026.1'
+  mmds: 1.1.7
+date_note: >-
+  The provider does not date its release notes. Each entry below carries the
+  version the provider published and `date: null`, rather than a date inferred
+  from the docs build stamp (docs.eyesopen.com reported "Last updated on
+  Sep 03, 2026" when read on 2026-09-05).
+
+series:
+  - name: Orion Molecular Design Platform
+    url: https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html
+    history_depth: 29 published releases, 2019.2.1 through 2026.4
+    entries:
+      - version: '2026.4'
+        date: null
+        url: https://docs.eyesopen.com/orion-user-interface/releasenotes/2026.4release.html
+        breaking: false
+        highlights:
+          - OCLI for multitenant customers is now available for licensed users according to permissions defined by new roles.
+          - Filter bars added to the Jobs and Packages tabs on the Floe page and to the Scaling Groups and Users tabs on the Systems page; multiple filters may be applied at once.
+          - A Services tab was added to the Systems page — start, stop, share, unshare and delete services.
+          - Job parameters can be downloaded as a JSON file from the Parameters panel.
+          - Admins can see, load, unload and delete all custom Molecule Search databases for their organization.
+      - version: '2026.3'
+        date: null
+        url: https://docs.eyesopen.com/orion-user-interface/releasenotes/2026.3release.html
+        breaking: false
+        highlights:
+          - Dataset ID is displayed alongside the dataset name and can be used to colour plot symbols.
+          - Datasets can be duplicated and their path copied from the Active Datasets space.
+          - A grid view was added to the 3D Viewer.
+          - A user-profile toggle controls uploading a file alongside the dataset on direct upload (default on).
+          - Project stats such as dataset and collection counts are noted as updating hourly.
+      - version: '2026.2'
+        date: null
+        url: https://docs.eyesopen.com/orion-user-interface/releasenotes/2026.2release.html
+        breaking: false
+        highlights:
+          - Create a new molecule from an existing selection in the 3D Viewer.
+          - Dataset export fields are separated into Molecule Fields, DU Fields and All Other Fields.
+          - Hyperlinks to floe input datasets added to the Jobs tab Details panel.
+          - Job names can be changed after creation.
+          - Multiple 3D fragments can be dropped into the Sketcher to build one unified 3D search query.
+      - version: '2026.1'
+        date: null
+        url: https://docs.eyesopen.com/orion-user-interface/releasenotes/2026.1release.html
+        breaking: false
+        highlights:
+          - Drag-and-drop file upload directly into the Data or 3D & Analyze pages.
+          - Custom database owners, and users granted delete permission via OCLI, may delete a database from its card on the System page.
+          - Floe Reports no longer use v1 collections.
+          - Floes created in the Floe Editor can be validated with a new "Validate Floe" button.
+          - The 3D & Analyze page result limit was raised to approximately 300,000 records.
+
+  - name: OpenEye Toolkits
+    url: https://docs.eyesopen.com/toolkits/python/releasenotes/highlights.html
+    entries:
+      - version: '2026.1'
+        date: null
+        breaking: false
+        highlights:
+          - "OEChem TK: peptide informatics support, including conversion between molecular structures and HELM representations, custom monomer dictionaries, and a built-in dictionary of more than 260 monomers."
+          - "Grapheme TK: enhanced visualization of complex peptides."
+          - "Bioisostere TK: new API functionality for simultaneous replacement of multiple query fragments in a molecule."
+
+  - name: OEApplications
+    url: https://docs.eyesopen.com/applications/releasenotes/index.html
+    entries:
+      - version: '2026.1'
+        date: null
+        breaking: false
+        highlights:
+          - "OMEGA 7.0.0: torsion driving now uses Thompson sampling automatically — roughly a 2x speedup in classic mode and 3x in fastrocs mode on a ~40K compound set, with equivalent virtual-screening performance."
+          - "Component versions shipped: AFITT 3.0.4, BROOD 5.0.0, EON 3.1.3, OEDocking 4.3.5, OMEGA 7.0.0, PICTO 5.1.5, pKa-Prospector 1.2.7, QUACPAC 2.3.0, ROCS 3.10.0, SiteHopper 2.1.4."
+          - "Supported platforms: RHEL 8/9/10, Ubuntu 22/24, Windows 11, macOS 14/15/26."
+
+not_published:
+  - >-
+    No public changelog for the Cadence EDA product lines. Release news appears
+    in community.cadence.com blog posts (e.g. "Cadence OrCAD X and Allegro X 25.1
+    is now available"), but the versioned release notes themselves sit behind the
+    support.cadence.com customer portal.

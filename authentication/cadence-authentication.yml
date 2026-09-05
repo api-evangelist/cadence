@@ -1,0 +1,119 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html ·
+  https://docs.eyesopen.com/webservices/mmds/client.html ·
+  https://docs.eyesopen.com/webservices/mmds/quickstart.html
+description: >-
+  How a client authenticates to the callable API surfaces Cadence Design Systems
+  operates. There is no OpenAPI to derive securitySchemes from — no machine
+  readable contract is published for any Cadence surface (see
+  conformance/cadence-conformance.yml) — so this profile is read from the
+  provider's own developer documentation and from a live unauthenticated probe
+  of the MMDS API.
+docs: https://docs.eyesopen.com/orion-developer/index.html
+
+schemes:
+  - id: orion-api-token
+    type: apiKey
+    surface: Orion Molecular Design Platform API
+    host: orion.eyesopen.com
+    in: client-managed
+    description: >-
+      Orion clients (the orionclient Python library and the `ocli` CLI)
+      authenticate with an account token. A profile is a tuple of Orion domain,
+      username, token and project, stored locally by `ocli config profile`; the
+      OCLI config directory and file permissions are forced to read/write for
+      the owner only.
+    token_issuance: >-
+      "Tokens can be created by logging into Orion with a web browser, going to
+      the user profile, and clicking Create Token under My Tokens." Tokens are
+      also managed from the CLI with `ocli tokens create|list|info|update|delete`.
+    token_lifecycle:
+      create: ocli tokens create <description>
+      list: "ocli tokens list — does not display the value associated with the tokens"
+      rotate: "ocli tokens update <id> changes the description only; rotation is create-new + delete-old"
+      revoke: ocli tokens delete <id>
+    multi_tenant_note: >-
+      Orion 2026.4 release notes state that OCLI for multitenant customers is
+      available to licensed users according to permissions defined by new roles.
+    docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+    verified: >-
+      Documented, not probed — Orion's API is behind the tenant stack and no
+      anonymous endpoint was found to observe the header form.
+
+  - id: mmds-orion-credentials
+    type: apiKey
+    surface: MMDS — Macromolecular Data Service REST API
+    host: mmds.eyesopen.com
+    base_url: https://mmds.eyesopen.com/api/v1/
+    in: session
+    description: >-
+      MMDSSessionConfig takes token, user, password, protocol, domain,
+      orion_credentials and api_prefix; the documented pattern inside an Orion
+      cube passes the Orion API token as `orion_credentials` together with the
+      Orion username, so MMDS delegates to the same Orion account token.
+    probe:
+      url: https://mmds.eyesopen.com/api/v1/auth/
+      http_status: 403
+      body: '{"detail":"Authentication credentials were not provided."}'
+      allow_header: GET, HEAD, OPTIONS
+      observed: '2026-09-05'
+      note: >-
+        A live unauthenticated request returns a Django REST Framework 403 with a
+        JSON detail body — the API is real and reachable, and every path is
+        authentication-gated. No WWW-Authenticate challenge is emitted, so the
+        exact header form cannot be established anonymously and is NOT recorded
+        here rather than guessed.
+    docs: https://docs.eyesopen.com/webservices/mmds/quickstart.html
+    verified: probed
+
+  - id: pointwise-glyph-server
+    type: local-socket
+    surface: Fidelity Pointwise Glyph Server
+    description: >-
+      The Glyph client connects to a Glyph Server exposed by a running Pointwise
+      /Fidelity session rather than to a hosted HTTP API; access is controlled by
+      the licensed desktop session, not by an issued API credential.
+    docs: https://github.com/pointwise/GlyphClientPython
+    verified: searched
+
+  - id: cadence-support-oidc
+    type: openIdConnect
+    surface: Cadence Online Support portal (support.cadence.com)
+    host: support.cadence.com
+    issuer: https://support.cadence.com
+    discovery: https://support.cadence.com/.well-known/openid-configuration
+    saved_document: well-known/cadence-support-openid-configuration.json
+    description: >-
+      Cadence Online Support runs on Salesforce Experience Cloud and publishes a
+      full OpenID Connect discovery document anonymously — authorization, token,
+      userinfo, revocation, introspection, dynamic registration and end-session
+      endpoints, a JWKS URI, 36 supported scopes and 24 supported claims. This
+      is the one machine-readable authentication document anywhere in the
+      Cadence estate.
+    grants: [authorization_code, implicit]
+    token_endpoint_auth_methods: [client_secret_post, client_secret_basic, private_key_jwt]
+    id_token_signing_alg: [RS256]
+    dpop_supported: true
+    dynamic_client_registration: true
+    scopes: scopes/cadence-scopes.yml
+    probe: {url: 'https://support.cadence.com/.well-known/openid-configuration', http_status: 200, content_type: application/json, observed: '2026-09-05'}
+    verified: probed
+    note: >-
+      This authenticates users and clients into the Cadence support portal. It is
+      NOT the auth model for the Orion or MMDS APIs, which use account tokens.
+
+oauth2: true
+openid_connect: true
+mutual_tls: false
+scopes_surface: >-
+  Published only by the support portal's OIDC discovery document (36 Salesforce
+  platform scopes — see scopes/cadence-scopes.yml). The Orion and MMDS APIs have
+  no scope model: Orion authorisation is expressed as project/workspace/
+  organization sharing and, since 2026.4, as multitenant roles.
+
+gaps:
+  - No public OpenAPI or securitySchemes block exists for any Cadence surface.
+  - No /.well-known/openid-configuration or /.well-known/oauth-authorization-server on ANY eyesopen host, nor on the cadence.com edge (404 or Cloudflare-challenged on 2026-09-05). The only discovery document in the estate is the support-portal one recorded above; see well-known/cadence-well-known.yml.
+  - Cadence's EDA products (Virtuoso, Allegro X, OrCAD X, Xcelium) are licence-managed desktop/compute software and publish no API credential model.

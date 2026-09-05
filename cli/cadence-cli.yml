@@ -1,0 +1,250 @@
+generated: '2026-09-05'
+method: searched
+source: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+description: >-
+  Cadence's documented first-party command line interfaces. The company's EDA
+  tools are driven by SKILL/Tcl scripting rather than a CLI with a published
+  command surface; the one fully documented CLI in the Cadence estate is `ocli`,
+  the Orion CLI shipped by OpenEye, Cadence Molecular Sciences with the Orion
+  Platform Python package. A second, thinner CLI (`mmdscli`) ships with the MMDS
+  client.
+docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+
+clis:
+  - name: ocli
+    display_name: Orion CLI
+    product: Orion Molecular Design Platform
+    version: 2026.4.1
+    docs: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+    install:
+      vendor_channel: >-
+        Installed as part of the Orion Platform Python package from OpenEye's
+        credentialed package channel. See packages/cadence-packages.yml.
+    availability_note: >-
+      Orion 2026.4 release notes state that OCLI for multitenant customers is
+      available to licensed users according to permissions defined by new roles.
+    global_options:
+      - {flag: --timeout, description: "Request timeout in seconds; default 10. All requests to the Orion API have a maximum timeout of 60 seconds."}
+      - {flag: --json, description: Return JSON rather than plain text, so results can be parsed.}
+      - {flag: --profile, description: "Which profile configuration to use when making requests to the Orion API; default `default`."}
+      - {flag: --max-retries, description: "Retries on connection failure or 404, default 2, with exponential backoff. Shard uploads/downloads are unaffected."}
+    command_groups:
+      config:
+        description: Profile and project configuration (Orion domain, username, token, project).
+        commands:
+          - {name: ocli config profile, description: "Configure an Orion profile (--url, --username, --token, --project)."}
+          - {name: ocli config project, description: Change the default project of a profile.}
+          - {name: ocli config delete, description: Delete an Orion profile.}
+          - {name: ocli config info, description: Retrieve information about the current profile.}
+          - {name: ocli config list, description: List configured profiles.}
+          - {name: ocli config token, description: "Refresh the profile token (deprecated)."}
+      folders:
+        description: Orion's virtual filesystem; folder commands sit at the top level.
+        commands:
+          - {name: ocli ls, description: "List folder contents or item details; supports filters (name, name_contains, types, tag_filters, order_by, limit, expired)."}
+          - {name: ocli mkdir, description: Create an Orion folder.}
+          - {name: ocli cp, description: Copy an item to a destination path.}
+          - {name: ocli mv, description: Move or rename an item.}
+          - {name: ocli head, description: Preview the head of an item.}
+          - {name: ocli rm, description: "Delete a folder or item by path. Supports --dry-run."}
+      workspaces:
+        commands:
+          - {name: ocli workspaces create, description: Create a shared workspace in a project.}
+          - {name: ocli workspaces list, description: List workspaces.}
+          - {name: ocli workspaces info, description: Show workspace details.}
+          - {name: ocli workspaces list-users, description: List users with access.}
+          - {name: ocli workspaces share, description: Share a workspace.}
+          - {name: ocli workspaces unshare, description: Revoke workspace sharing.}
+      datasets:
+        commands:
+          - {name: ocli datasets upload, description: Upload a file as an Orion dataset.}
+          - {name: ocli datasets download, description: Download a dataset to any OEChem-writable format.}
+          - {name: ocli datasets list, description: "List datasets; filters include name, deleted, tags, tag_match, limit."}
+          - {name: ocli datasets info, description: Show dataset details.}
+          - {name: ocli datasets finalize, description: Finalize a dataset.}
+          - {name: ocli datasets delete, description: "Delete a dataset. --immediate bypasses the soft-delete."}
+          - {name: ocli datasets tag, description: Add tags to a dataset.}
+          - {name: ocli datasets untag, description: Remove tags.}
+          - {name: ocli datasets list-tags, description: List a dataset's tags.}
+          - {name: ocli datasets share, description: "Share with user | project | organization."}
+          - {name: ocli datasets unshare, description: Revoke sharing.}
+      files:
+        commands:
+          - {name: ocli files upload, description: Upload a file.}
+          - {name: ocli files download, description: Download a file.}
+          - {name: ocli files list, description: List files with filters.}
+          - {name: ocli files info, description: Show file details.}
+          - {name: ocli files delete, description: Delete a file.}
+          - {name: ocli files tag, description: Tag a file.}
+          - {name: ocli files untag, description: Untag a file.}
+          - {name: ocli files list-tags, description: List a file's tags.}
+          - {name: ocli files share, description: Share a file.}
+          - {name: ocli files unshare, description: Unshare a file.}
+      collections:
+        commands:
+          - {name: ocli collections upload, description: Upload shards into a collection.}
+          - {name: ocli collections download, description: Download a collection.}
+          - {name: ocli collections download-shards, description: Download named shards.}
+          - {name: ocli collections list, description: List collections.}
+          - {name: ocli collections list-shards, description: List a collection's shards.}
+          - {name: ocli collections info, description: Show collection details.}
+          - {name: ocli collections info-shard, description: Show one shard's details.}
+          - {name: ocli collections open, description: Open a collection for writing.}
+          - {name: ocli collections close, description: Close a collection.}
+          - {name: ocli collections delete, description: Delete a collection.}
+          - {name: ocli collections delete-shards, description: Delete named shards.}
+          - {name: ocli collections tag, description: Tag a collection.}
+          - {name: ocli collections untag, description: Untag a collection.}
+          - {name: ocli collections share, description: Share a collection.}
+          - {name: ocli collections unshare, description: Unshare a collection.}
+      secrets:
+        commands:
+          - {name: ocli secrets create, description: Create a named secret.}
+          - {name: ocli secrets list, description: List secrets.}
+          - {name: ocli secrets info, description: Show a secret's metadata.}
+          - {name: ocli secrets delete, description: Delete a secret.}
+          - {name: ocli secrets share, description: Share a secret.}
+          - {name: ocli secrets unshare, description: Unshare a secret.}
+          - {name: ocli secrets list-shares, description: List a secret's shares.}
+      projects:
+        commands:
+          - {name: ocli projects create, description: Create a project.}
+          - {name: ocli projects list, description: "List projects; supports deleted=True."}
+          - {name: ocli projects info, description: Show project details.}
+          - {name: ocli projects delete, description: Delete a project.}
+          - {name: ocli projects leave, description: Leave a project.}
+          - {name: ocli projects share, description: Share a project.}
+          - {name: ocli projects unshare, description: Unshare a project.}
+          - {name: ocli projects list-shares, description: List project shares.}
+      packages:
+        commands:
+          - {name: ocli packages init, description: Scaffold a new Orion package.}
+          - {name: ocli packages upload, description: Upload a package from a file or URL.}
+          - {name: ocli packages list, description: "List packages; filter by states (ready, queued, error)."}
+          - {name: ocli packages info, description: Show package details.}
+          - {name: ocli packages environment, description: Show a package's environment.}
+          - {name: ocli packages inspection, description: Inspect a package.}
+          - {name: ocli packages delete, description: Delete a package.}
+          - {name: ocli packages list-shares, description: List package shares.}
+      workfloes:
+        commands:
+          - {name: ocli workfloes list, description: "List workfloes; filter by package, name, tags, states (ready, deprecated)."}
+          - {name: ocli workfloes info, description: Show workfloe details.}
+          - {name: ocli workfloes delete, description: Delete a workfloe.}
+          - {name: ocli workfloes list-classifications, description: List workfloe classifications by name/path/depth.}
+          - {name: ocli workfloes list-shares, description: List workfloe shares.}
+      jobs:
+        commands:
+          - {name: ocli jobs start, description: "Start a job from a workfloe; --wait, --in/--out, --param-file, --project."}
+          - {name: ocli jobs watch, description: Watch a running job.}
+          - {name: ocli jobs list, description: "List jobs; filter by name, project, workfloe, job_type, owner, states, tags."}
+          - {name: ocli jobs info, description: Retrieve job information.}
+          - {name: ocli jobs logs, description: Retrieve job logs.}
+          - {name: ocli jobs log_size, description: Report the size of a job's logs.}
+          - {name: ocli jobs delete_logs, description: Delete a job's logs.}
+          - {name: ocli jobs cancel, description: Cancel a running job.}
+          - {name: ocli jobs delete, description: Delete a job.}
+          - {name: ocli jobs tag, description: Tag a job.}
+          - {name: ocli jobs list-tags, description: List a job's tags.}
+          - {name: ocli jobs export-params, description: Export a job's parameters to JSON.}
+          - {name: ocli jobs debug-export, description: Export debug information for a job.}
+          - {name: ocli jobs summary-export, description: "Export a job summary; --start-date/--end-date, --package-uuids, --workfloe-uuid, --job-ids, --notify, --download."}
+      cost:
+        commands:
+          - {name: ocli cost export, description: "Export a cost report; --report-type=storage_use | spend_summary, --notify."}
+      molsearch:
+        description: Molecule Search databases and queries.
+        commands:
+          - {name: ocli molsearch db create, description: "Create a searchable database from a prepared collection; --pools, --memory-mb, --disk-space, --cpu, --gpu, --instance-type, --display-name, --server-is-remote."}
+          - {name: ocli molsearch db list, description: List molecule-search databases.}
+          - {name: ocli molsearch db info, description: Show database details.}
+          - {name: ocli molsearch db load, description: Load a database.}
+          - {name: ocli molsearch db unload, description: Unload a database.}
+          - {name: ocli molsearch db update, description: Update a database.}
+          - {name: ocli molsearch db delete, description: Delete a database.}
+          - {name: ocli molsearch db logs, description: Retrieve database logs.}
+          - {name: ocli molsearch db share, description: Share a database.}
+          - {name: ocli molsearch db unshare, description: Unshare a database.}
+          - {name: ocli molsearch db list-shares, description: List database shares.}
+          - {name: ocli molsearch query create exact, description: Exact 2D search.}
+          - {name: ocli molsearch query create graphsim, description: Similarity (GraphSim) 2D search.}
+          - {name: ocli molsearch query create substructure, description: Substructure 2D search (SMARTS supported).}
+          - {name: ocli molsearch query create title, description: Title 2D search.}
+          - {name: ocli molsearch query create fastrocs, description: 3D similarity (FastROCS) search.}
+          - {name: ocli molsearch query list, description: List queries.}
+          - {name: ocli molsearch query info, description: Show query details.}
+          - {name: ocli molsearch query list-results, description: List a query's results.}
+          - {name: ocli molsearch query download, description: Download results to a local file.}
+          - {name: ocli molsearch query export, description: Export query results to an Orion dataset.}
+          - {name: ocli molsearch query update, description: Update a query.}
+          - {name: ocli molsearch query cancel, description: Cancel a running query.}
+          - {name: ocli molsearch query delete, description: Delete a query.}
+          - {name: ocli molsearch query smiles, description: Get a SMILES string from a molecule title.}
+      tokens:
+        description: API tokens used to authenticate a client to Orion.
+        commands:
+          - {name: ocli tokens create, description: Create an Orion token with a description.}
+          - {name: ocli tokens list, description: "List tokens. Does not display the token values."}
+          - {name: ocli tokens info, description: Retrieve a token's metadata.}
+          - {name: ocli tokens update, description: Update a token's description.}
+          - {name: ocli tokens delete, description: Delete a token.}
+      users:
+        commands:
+          - {name: ocli users list, description: List users.}
+          - {name: ocli users info, description: Show user details.}
+      scaling_groups:
+        commands:
+          - {name: ocli scaling-groups list, description: List compute scaling groups.}
+          - {name: ocli scaling-groups update, description: Update a scaling group.}
+      services:
+        commands:
+          - {name: ocli services spec list, description: List service specifications.}
+          - {name: ocli services spec info, description: Show a service spec.}
+          - {name: ocli services spec share, description: Share a service spec.}
+          - {name: ocli services spec unshare, description: Unshare a service spec.}
+          - {name: ocli services spec list-shares, description: List service spec shares.}
+          - {name: ocli services task create, description: Create a service task.}
+          - {name: ocli services task list, description: List service tasks.}
+          - {name: ocli services task info, description: Show a service task.}
+          - {name: ocli services task logs, description: Retrieve service task logs.}
+          - {name: ocli services task update, description: Update a service task.}
+          - {name: ocli services task delete, description: Delete a service task.}
+          - {name: ocli services task share, description: Share a service task.}
+          - {name: ocli services task unshare, description: Unshare a service task.}
+    key_flows:
+      configure:
+        command: ocli config profile --url orion.eyesopen.com --username <user> --token <token>
+        description: >-
+          Bind the CLI to an Orion stack. Tokens are created by logging into
+          Orion in a browser, opening the user profile, and clicking
+          "Create Token" under My Tokens — or with `ocli tokens create`.
+      run_a_floe:
+        command: ocli jobs start <workfloe_id> <job_name> --param-file params.json --project <id>
+        description: Start a computational job from a workfloe with a JSON parameter file.
+      safe_delete:
+        command: ocli rm --dry-run <path>
+        description: Rehearse a delete without performing it.
+
+  - name: mmdscli
+    display_name: MMDS CLI
+    product: MMDS — Macromolecular Data Service
+    version: 1.1.7
+    docs: https://docs.eyesopen.com/webservices/mmds/quickstart.html
+    install:
+      vendor_channel: Ships with the mmdsclient Python package from OpenEye's credentialed channel.
+    commands:
+      - {name: mmdscli config profile, description: Configure an MMDS profile (supports --profile for multiple profiles).}
+      - {name: mmdscli config info, description: Show the current profile's settings.}
+      - {name: mmdscli config list, description: List locally configured profiles.}
+      - {name: mmdscli status, description: Check MMDS server status.}
+    note: >-
+      Only these four commands are enumerated in the published MMDS quickstart;
+      the rest of the MMDS surface is exercised through the Python client API
+      (MMDSSession and the Experiment/Site/Family/Context/Frame/Result types).
+
+not_found:
+  - >-
+    No published command surface for a Cadence EDA CLI. Virtuoso, Allegro X,
+    OrCAD X, Xcelium and Innovus are automated with SKILL/Tcl scripting inside
+    licensed installs; Cadence does not publish an installable CLI with a
+    documented command reference on a public host.

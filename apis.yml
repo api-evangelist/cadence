@@ -39,7 +39,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cadence.png
 access: 3rd-Party
 created: '2026-03-26'
-modified: '2026-04-23'
+modified: '2026-09-05'
 position: Producing
 description: >-
   Cadence Design Systems is a multinational electronic design automation
@@ -51,6 +51,7 @@ description: >-
 apis:
   - aid: cadence:cadence-design-systems
     name: Cadence Design Systems
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cadence.png
     tags:
       - EDA
       - Semiconductors
@@ -74,9 +75,80 @@ apis:
     description: >-
       Cadence Design Systems delivers software and IP for electronic design
       automation, including IC and PCB design, verification, emulation, and
-      system analysis. No public developer API is currently documented;
-      products, support, community, investor, newsroom, and careers
-      properties are published online.
+      system analysis. The EDA product lines (Virtuoso, Allegro X, OrCAD X,
+      Xcelium, Innovus, JasperGold) are licensed desktop and compute software
+      automated with SKILL and Tcl scripting inside the installed product, not
+      network APIs, and Cadence publishes no machine-readable contract for them.
+      The callable surfaces Cadence does operate are catalogued as separate API
+      entries in this record.
+  - aid: cadence:orion
+    name: Orion Molecular Design Platform API
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cadence.png
+    tags:
+      - Molecular Design
+      - Drug Discovery
+      - Cheminformatics
+      - Scientific Computing
+      - Cloud Platform
+    humanURL: https://www.eyesopen.com/orion/platform
+    baseURL: https://orion.eyesopen.com
+    properties:
+      - type: Documentation
+        url: https://docs.eyesopen.com/orion-developer/index.html
+      - type: APIReference
+        url: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+      - type: GettingStarted
+        url: https://docs.eyesopen.com/orion-developer/development/intro.html
+      - type: Authentication
+        url: authentication/cadence-authentication.yml
+      - type: CLI
+        url: cli/cadence-cli.yml
+      - type: Conventions
+        url: conventions/cadence-conventions.yml
+      - type: ChangeLog
+        url: https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html
+      - type: SignUp
+        url: https://www.eyesopen.com/orion-signup
+    description: >-
+      The cloud-native molecular design platform from OpenEye, Cadence Molecular
+      Sciences — the Cadence Design Systems business unit acquired in 2022 (its
+      documentation carries a Cadence Design Systems copyright). Orion runs
+      cube/floe computational workflows, datasets, shard collections, jobs and
+      GPU-backed molecule search. Clients authenticate with an account-issued
+      token; the published interface is the orionclient Python library and the
+      ocli command line interface, and no OpenAPI, GraphQL SDL or AsyncAPI
+      contract is published for it. Base host read from the provider's own
+      documented example ("Url of Orion Stack, ex: orion.eyesopen.com").
+  - aid: cadence:mmds
+    name: MMDS — Macromolecular Data Service
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cadence.png
+    tags:
+      - Structural Biology
+      - Protein Data
+      - Scientific Computing
+      - Drug Discovery
+    humanURL: https://docs.eyesopen.com/webservices/mmds/
+    baseURL: https://mmds.eyesopen.com/api/v1/
+    properties:
+      - type: Documentation
+        url: https://docs.eyesopen.com/webservices/mmds/
+      - type: APIReference
+        url: https://docs.eyesopen.com/webservices/mmds/client.html
+      - type: GettingStarted
+        url: https://docs.eyesopen.com/webservices/mmds/quickstart.html
+      - type: Authentication
+        url: authentication/cadence-authentication.yml
+    description: >-
+      A live HTTPS JSON API for macromolecular experimental data — experiments,
+      sites, families, contexts, frames and results, keyed on PDB structure
+      codes with .pdb/.cif structures, MTZ density and cryo-EM maps. Operated by
+      OpenEye, Cadence Molecular Sciences, and reachable at
+      https://mmds.eyesopen.com/api/v1/ — an unauthenticated GET on 2026-09-05
+      returned HTTP 403 with a Django REST Framework body,
+      {"detail":"Authentication credentials were not provided."}, which confirms
+      the service is real and that every path is authentication-gated. No
+      OpenAPI is published; the mmdsclient Python library and mmdscli CLI are
+      the published interface.
 common:
   - type: DomainSecurity
     url: security/cadence-domain-security.yml
@@ -100,7 +172,54 @@ common:
     url: https://www.cadence.com/en_US/home/privacy-policy.html
   - type: TermsOfService
     url: https://www.cadence.com/en_US/home/terms-of-use.html
+  - type: Packages
+    url: packages/cadence-packages.yml
+  - type: SDKs
+    url: packages/cadence-packages.yml
+  - type: CLI
+    url: cli/cadence-cli.yml
+  - type: Authentication
+    url: authentication/cadence-authentication.yml
+  - type: OAuthScopes
+    url: scopes/cadence-scopes.yml
+  - type: Conventions
+    url: conventions/cadence-conventions.yml
+  - type: ChangeLog
+    url: changelog/cadence-changelog.yml
+  - type: Lifecycle
+    url: lifecycle/cadence-lifecycle.yml
+  - type: WellKnown
+    url: well-known/cadence-well-known.yml
+  - type: LLMsTxt
+    url: llms/cadence-llms.txt
+  - type: Conformance
+    url: conformance/cadence-conformance.yml
+  - type: Compliance
+    url: https://www.cadence.com/en_US/home/resources/technical-briefs/cloud-security-tb.html
+  - type: Plans
+    url: plans/cadence-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/cadence-rate-limits.yml
+  - type: GitHubOrganization
+    url: https://github.com/pointwise
+  - type: Documentation
+    url: https://docs.eyesopen.com/
+  - type: DeveloperPortal
+    url: https://docs.eyesopen.com/orion-developer/index.html
+  - type: APIReference
+    url: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+  - type: GettingStarted
+    url: https://docs.eyesopen.com/orion-developer/development/intro.html
+  - type: SignUp
+    url: https://www.eyesopen.com/orion-signup
+  - type: Blog
+    url: https://www.eyesopen.com/blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 specificationVersion: '0.23'
+x-enrichment:
+  date: '2026-09-05'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v3

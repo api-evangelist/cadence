@@ -1,0 +1,106 @@
+generated: '2026-09-05'
+method: probed
+source: https://support.cadence.com/.well-known/openid-configuration
+description: >-
+  The only OAuth 2.0 / OpenID Connect scope surface Cadence Design Systems
+  publishes anonymously. It is served by Cadence Online Support
+  (support.cadence.com), a Salesforce Experience Cloud tenant acting as an
+  OpenID Provider with issuer https://support.cadence.com. The scope list below
+  is read verbatim from that discovery document.
+honesty_note: >-
+  These are the Salesforce platform scope names the tenant advertises, not a
+  Cadence-designed API permission model. They govern OIDC/OAuth clients
+  authenticating against the Cadence support portal — not the Orion or MMDS
+  APIs, which authenticate with an account-issued token and have no published
+  scope surface at all (see authentication/cadence-authentication.yml).
+docs: null
+docs_note: >-
+  Cadence publishes no scopes/permissions reference page. This artifact records
+  the machine-readable discovery document instead, which is stronger evidence
+  than prose but weaker in coverage — no per-scope description is published.
+
+issuer: https://support.cadence.com
+endpoints:
+  authorization: https://support.cadence.com/services/oauth2/authorize
+  token: https://support.cadence.com/services/oauth2/token
+  userinfo: https://support.cadence.com/services/oauth2/userinfo
+  revocation: https://support.cadence.com/services/oauth2/revoke
+  introspection: https://support.cadence.com/services/oauth2/introspect
+  registration: https://support.cadence.com/services/oauth2/register
+  end_session: https://support.cadence.com/services/auth/idp/oidc/logout
+  jwks: https://support.cadence.com/id/keys
+grant_and_client_support:
+  response_types_supported: [code, token, token id_token]
+  token_endpoint_auth_methods_supported: [client_secret_post, client_secret_basic, private_key_jwt]
+  id_token_signing_alg_values_supported: [RS256]
+  dpop_signing_alg_values_supported: [RS256, RS384, RS512, ES256, ES384, ES512, EdDSA]
+  subject_types_supported: [public]
+  dynamic_client_registration: true
+
+scopes:
+  - {name: openid, description: null}
+  - {name: profile, description: null}
+  - {name: email, description: null}
+  - {name: address, description: null}
+  - {name: phone, description: null}
+  - {name: id, description: null}
+  - {name: api, description: null}
+  - {name: web, description: null}
+  - {name: full, description: null}
+  - {name: lightning, description: null}
+  - {name: visualforce, description: null}
+  - {name: content, description: null}
+  - {name: refresh_token, description: null}
+  - {name: offline_access, description: null}
+  - {name: custom_permissions, description: null}
+  - {name: chatter_api, description: null}
+  - {name: chatbot_api, description: null}
+  - {name: interaction_api, description: null}
+  - {name: wave_api, description: null}
+  - {name: eclair_api, description: null}
+  - {name: pardot_api, description: null}
+  - {name: scrt_api, description: null}
+  - {name: sfap_api, description: null}
+  - {name: einstein_gpt_api, description: null}
+  - {name: mcp_api, description: null}
+  - {name: user_registration_api, description: null}
+  - {name: pwdless_login_api, description: null}
+  - {name: forgot_password, description: null}
+  - {name: data_cloud_user_claims, description: null}
+  - {name: cdp_api, description: null}
+  - {name: cdp_query_api, description: null}
+  - {name: cdp_profile_api, description: null}
+  - {name: cdp_ingest_api, description: null}
+  - {name: cdp_segment_api, description: null}
+  - {name: cdp_identityresolution_api, description: null}
+  - {name: cdp_calculated_insight_api, description: null}
+scope_count: 36
+description_coverage: >-
+  0 of 36 scopes carry a published description — the discovery document lists
+  names only and Cadence publishes no scope reference page.
+
+claims_supported:
+  - active
+  - address
+  - email
+  - email_verified
+  - family_name
+  - given_name
+  - is_app_installed
+  - language
+  - locale
+  - name
+  - nickname
+  - organization_id
+  - phone_number
+  - phone_number_verified
+  - photos
+  - picture
+  - preferred_username
+  - profile
+  - sub
+  - updated_at
+  - urls
+  - user_id
+  - user_type
+  - zoneinfo

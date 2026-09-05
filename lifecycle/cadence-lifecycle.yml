@@ -1,0 +1,85 @@
+generated: '2026-09-05'
+method: searched
+source: >-
+  https://www.eyesopen.com/supported-platforms ·
+  https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html ·
+  https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
+description: >-
+  Versioning, support and end-of-life posture for the Cadence surfaces that have a
+  programmable interface. What Cadence publishes here is a platform-support policy
+  and a long public release-note history; what it does not publish is an API
+  deprecation policy, Sunset/Deprecation header behaviour, an SLA, or a status page.
+
+versioning:
+  scheme: calendar
+  pattern: YYYY.N per product line (Orion 2026.4, OEToolkits 2026.1, OEApplications 2026.1)
+  api_versioning: >-
+    MMDS carries a path version segment (/api/v1/). Orion's API is not
+    separately versioned in public documentation — the platform release is the
+    version.
+  docs: https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html
+
+release_cadence:
+  observed: >-
+    Four Orion releases in 2026 (2026.1 through 2026.4) and five in 2025
+    (2025.1 through 2025.5), read from the published release-note index on
+    2026-09-05 — roughly quarterly.
+  history: 29 published Orion releases, 2019.2.1 through 2026.4.
+
+support_policy:
+  published: true
+  url: https://www.eyesopen.com/supported-platforms
+  summary: >-
+    "OpenEye's Applications (GUI enabled) and Toolkits support the most recent OS
+    version and widely-used legacy versions." Platform support is defined as an
+    OS + processor type or a cloud environment, and C++ toolkits are additionally
+    pinned to specific compiler versions because the customer's compiler must
+    correspond precisely with the one used to build the toolkit.
+  supported_platforms_2026_1:
+    linux: RHEL 8/9/10, Ubuntu 22/24
+    windows: Win11
+    macos: 14, 15, 26
+  contact: support@eyesopen.com
+
+deprecation_policy:
+  published: false
+  evidence: >-
+    No deprecation or sunset policy is published for any Cadence surface. The
+    provider does mark individual things deprecated in place — `ocli config token`
+    is labelled "Deprecated", `--password` on `ocli config profile` is
+    "Deprecated. Ignored if provided.", and workfloes carry a `deprecated` state
+    filterable with `ocli workfloes list states=ready,deprecated` — but no
+    timeline, notice period, or removal commitment accompanies them.
+  rfc8594_headers: not documented; no anonymous endpoint available to observe Sunset/Deprecation headers.
+  deprecated_items_observed:
+    - {item: ocli config token, note: "Refresh your Orion Profile Token (Deprecated)."}
+    - {item: "ocli config profile --password", note: "Deprecated. Ignored if provided."}
+    - {item: Floe Reports v1 collections, note: "Orion 2026.1 — Floe Reports no longer use v1 collections."}
+
+status_page:
+  published: false
+  probes:
+    - {url: 'https://status.cadence.com/', status: 0, note: does not resolve (no DNS answer, probed 2026-09-05)}
+    - {url: 'https://status.eyesopen.com/', status: 0, note: does not resolve (no DNS answer, probed 2026-09-05)}
+  note: >-
+    No public status or incident-history page was found for Cadence or for
+    OpenEye/Orion. Service notices for Cadence products go through
+    support.cadence.com, which is a Salesforce Experience Cloud portal requiring
+    a customer login.
+
+sla:
+  published: false
+  note: >-
+    No public uptime or response-time SLA. Cadence OnCloud and Orion are sold as
+    licensed/subscription services with terms negotiated in the customer
+    agreement.
+
+end_of_life:
+  published: false
+  note: >-
+    No EOL calendar is published for Orion releases, the OpenEye Toolkits, or the
+    Cadence EDA product lines.
+
+related:
+  changelog: changelog/cadence-changelog.yml
+  conventions: conventions/cadence-conventions.yml
