@@ -150,6 +150,8 @@ apis:
       OpenAPI is published; the mmdsclient Python library and mmdscli CLI are
       the published interface.
 common:
+  - type: FinOps
+    url: finops/cadence-finops.yml
   - url: https://community.cadence.com/rss
     type: BlogRSS
   - type: DomainSecurity
