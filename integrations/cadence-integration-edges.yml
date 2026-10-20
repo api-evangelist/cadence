@@ -1,3 +1,34 @@
+generated: '2026-10-20'
+method: searched
+source:
+- https://registry.npmjs.org
+- https://pypi.org/pypi
+- https://rubygems.org/api/v1
+- https://crates.io/api/v1
+- https://repo1.maven.org/maven2
+- https://api.nuget.org/v3
+- https://proxy.golang.org
+- https://zapier.com/apps/cadence/integrations
+- https://zapier.com/apps/cadence-design-systems/integrations
+- https://n8n.io/integrations/cadence/
+- https://composio.dev/toolkits/cadence
+- https://monid.ai/tools/cadence
+checked:
+- dassault/integrations/dassault-integration-edges.yml
+- https://api.nuget.org/v3
+- https://crates.io/api/v1
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
+- https://composio.dev/toolkits/cadence
+- https://monid.ai/tools/cadence
+- https://n8n.io/integrations/cadence/
+- https://zapier.com/apps/cadence-design-systems/integrations
+- https://zapier.com/apps/cadence/integrations
+summary: null
+marketplace_apps: []
 edges:
 - partner_name: PyPI
   partner: pypi
@@ -29,21 +60,21 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
-generated: '2026-10-18'
-method: searched
-source:
-- https://api.nuget.org/v3
-- https://crates.io/api/v1
-- https://proxy.golang.org
-- https://pypi.org/pypi
-- https://registry.npmjs.org
-- https://repo1.maven.org/maven2
-- https://rubygems.org/api/v1
-checked:
-- https://api.nuget.org/v3
-- https://crates.io/api/v1
-- https://proxy.golang.org
-- https://pypi.org/pypi
-- https://registry.npmjs.org
-- https://repo1.maven.org/maven2
-- https://rubygems.org/api/v1
+- partner_name: Dassault Systèmes (own)
+  partner: dassault
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.3ds.com/partners/solutions/200000000049103_PDT00000002163_CADENCE_Pulse_Connector_for_3DEXPERIENCE
+  mirror_of: dassault/integrations/dassault-integration-edges.yml
+  apps:
+  - CADENCE Pulse Connector for 3DEXPERIENCE
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: CAA / 3DEXPERIENCE partner solution
+templates: []

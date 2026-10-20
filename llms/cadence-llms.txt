@@ -1,95 +1,260 @@
-# Cadence Design Systems
+# Cadence Design Systems: Intelligent System Design
 
-> Cadence Design Systems (Nasdaq: CDNS) is a multinational electronic design
-> automation (EDA) software and hardware company. Its portfolio spans integrated
-> circuit, system-on-chip, printed circuit board and system design — Virtuoso,
-> Spectre, Genus, Innovus, JasperGold, Xcelium, Palladium, Allegro X, OrCAD X,
-> Fidelity CFD — plus computational biology through OpenEye, Cadence Molecular
-> Sciences, acquired in 2022.
+> A curated list of high-value resources from Cadence Design Systems that are easy for large language models to use.
+> These URLs highlight evergreen, structured content that explains Cadence’s core EDA platforms, system design solutions, and AI-driven innovation.
 
-generated: 2026-09-05
-method: generated
-source: all/cadence/apis.yml plus the artifacts in this repository
-license: CC BY-NC-SA (artifacts) / Apache-2.0 (code)
+---
 
-## What is callable
+## Site Purpose
 
-Cadence's flagship EDA tools are licensed desktop and compute software driven by
-SKILL and Tcl scripting inside the installed product; they are not network APIs
-and Cadence publishes no contract for them. Two HTTPS APIs and one identity
-surface are real, reachable and documented, and one desktop scripting API is
-distributed as a public Python package:
+Cadence Design Systems is a global leader in electronic systems design, providing
+computational software, hardware platforms, and intellectual property used to design
+the world’s most advanced semiconductors, electronic systems, and digital twins.
 
-- Orion Molecular Design Platform API — https://orion.eyesopen.com
-  Token-authenticated. The published interface is the `orionclient` Python
-  library and the `ocli` CLI, not a REST reference. Programming guide:
-  https://docs.eyesopen.com/orion-developer/index.html
-- MMDS — Macromolecular Data Service — https://mmds.eyesopen.com/api/v1/
-  A live JSON API (Django REST Framework). Every path is authentication-gated;
-  an anonymous GET returns 403 {"detail":"Authentication credentials were not
-  provided."}. Client API: https://docs.eyesopen.com/webservices/mmds/client.html
-- Cadence Online Support OpenID Connect provider — https://support.cadence.com
-  Discovery: https://support.cadence.com/.well-known/openid-configuration
-- Fidelity Pointwise Glyph Server — a scripting API on a running Pointwise
-  session, reached with the `pointwise-glyph-client` Python package.
+Cadence’s strategy is centered on Intelligent System Design spanning:
+- Silicon (ICs, SoCs, chiplets)
+- Systems (packages, PCBs, multiphysics)
+- Software and AI-driven optimization
 
-## What is NOT published
+Primary navigation hubs:
+- https://www.cadence.com/en_US/home/tools/
+- https://www.cadence.com/en_US/home/solutions/
+- https://www.cadence.com/en_US/home/explore.html
+---
 
-- No OpenAPI, Swagger, GraphQL SDL, AsyncAPI, protobuf or WSDL contract on any
-  Cadence or eyesopen host. Probed 2026-09-05; see conformance/.
-- No MCP server, no A2A agent card, no webhook or event surface.
-- No public plans, prices, quotas or rate limits — every commercial path is a quote.
-- No status page, no SLA, no deprecation policy, no error-code reference.
-- No security.txt and no api-catalog on any host.
+## Cadence.AI — AI-Native Platforms
 
-## Documentation
+- Millennium Platform  
+  https://www.cadence.com/en_US/home/ai/millennium.html  
+  AI-driven digital twin supercomputer for large-scale system simulation.
 
-- OpenEye / Cadence Molecular Sciences documentation hub: https://docs.eyesopen.com/
-- Orion Programming Guide: https://docs.eyesopen.com/orion-developer/index.html
-- Orion CLI (`ocli`) command reference: https://docs.eyesopen.com/orion-developer/modules/orion-platform/docs/orionclient/cli.html
-- Orion user interface guide: https://docs.eyesopen.com/orion-user-interface/index.html
-- OpenEye Toolkits — Python: https://docs.eyesopen.com/toolkits/python/index.html
-- OpenEye Toolkits — C++: https://docs.eyesopen.com/toolkits/cpp/index.html
-- OpenEye Toolkits — Java: https://docs.eyesopen.com/toolkits/java/index.html
-- OpenEye Toolkits — C#: https://docs.eyesopen.com/toolkits/csharp/index.html
-- MMDS — Macromolecular Data Service: https://docs.eyesopen.com/webservices/mmds/
-- Floe guide: https://docs.eyesopen.com/floe/index.html
+- Cerebrus AI Studio  
+  https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/cerebrus.html  
+  Reinforcement-learning-based SoC design space exploration.
 
-## Releases
+- Optimality Intelligent System Explorer  
+  https://www.cadence.com/en_US/home/tools/system-design-and-analysis/optimality.html  
+  AI-driven multiphysics exploration and optimization.
 
-- Orion release notes (2019.2.1 → 2026.4): https://docs.eyesopen.com/orion-user-interface/releasenotes/index.html
-- OEApplications release notes: https://docs.eyesopen.com/applications/releasenotes/index.html
-- OpenEye Toolkits highlights: https://docs.eyesopen.com/toolkits/python/releasenotes/highlights.html
-- Supported platforms policy: https://www.eyesopen.com/supported-platforms
+- Verisium Verification Platform  
+  https://www.cadence.com/en_US/home/tools/system-verification/verisium.html  
+  AI-powered verification analytics and closure.
 
-## Packages
+- Allegro X AI  
+  https://www.cadence.com/en_US/home/tools/pcb-design/allegro-x-ai.html  
+  AI-driven PCB design and optimization.
 
-- pointwise-glyph-client (PyPI, official, 2.0.13, 2024-09-11): https://pypi.org/project/pointwise-glyph-client/
-- Source: https://github.com/pointwise/GlyphClientPython
-- GitHub organization "Cadence Design Systems, Inc." (Fidelity Pointwise, 89 repos): https://github.com/pointwise
-- OpenEye Toolkits, Orion Platform and mmdsclient are distributed from OpenEye's
-  own credentialed package channel under a commercial licence — not from PyPI,
-  Maven Central or NuGet.
+- Tensilica AI Platform  
+  https://www.cadence.com/en_US/home/tools/ip/tensilica.html  
+  On-device AI IP for embedded and edge workloads.
 
-## Company
+AI portfolio overview:
+- https://www.cadence.com/en_US/home/ai/overview.html
 
-- Website: https://www.cadence.com
-- Products: https://www.cadence.com/en_US/home/tools.html
-- Support portal: https://support.cadence.com
-- Community: https://community.cadence.com
-- OnCloud marketplace: https://oncloud.cadence.com/
-- Cloud security technical brief: https://www.cadence.com/en_US/home/resources/technical-briefs/cloud-security-tb.html
-- Investor relations: https://investor.cadence.com
-- Newsroom: https://www.cadence.com/en_US/home/company/newsroom.html
-- Careers: https://www.cadence.com/en_US/home/company/careers.html
-- Privacy: https://www.cadence.com/en_US/home/privacy-policy.html
-- Terms of use: https://www.cadence.com/en_US/home/terms-of-use.html
-- OpenEye, Cadence Molecular Sciences: https://www.eyesopen.com
-- Orion platform: https://www.eyesopen.com/orion/platform
+---
 
-## Crawler note
+## IC Design & Verification
 
-cadence.com, www.cadence.com and community.cadence.com sit behind a Cloudflare
-bot challenge that answers 403 to non-browser clients on every path. Those pages
-exist and are served to browsers; a 403 recorded in this repository against a
-cadence.com URL means our crawler was turned away, not that the page is gone.
+Tools for digital, analog, RF, and mixed-signal IC design and verification.
+
+- Virtuoso Studio  
+  https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design.html  
+  Analog, RF, and custom IC design platform.
+
+- Spectre Simulation  
+  https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/spectre.html  
+  High-accuracy analog and mixed-signal simulation.
+
+- Innovus Platform  
+  https://www.cadence.com/en_US/home/tools/digital-design-and-signoff.html  
+  Digital implementation, place-and-route, and signoff.
+
+- Xcelium Logic Simulation  
+  https://www.cadence.com/en_US/home/tools/system-verification/xcelium.html  
+  Parallel logic simulation for large-scale SoC verification.
+
+- Palladium Emulation  
+  https://www.cadence.com/en_US/home/tools/system-verification/palladium.html  
+  Enterprise-grade hardware emulation.
+
+- Protium Prototyping  
+  https://www.cadence.com/en_US/home/tools/system-verification/protium.html  
+  FPGA-based prototyping for early software development.
+
+- Silicon Solutions (IP)  
+  https://www.cadence.com/en_US/home/tools/ip.html  
+  Interface IP, protocol IP, and compute IP including Tensilica processors.
+
+---
+
+## System Design & Multiphysics Analysis
+
+System-level, PCB, package, and multiphysics analysis platforms.
+
+- Allegro X Design Platform  
+  https://www.cadence.com/en_US/home/tools/pcb-design/allegro-x.html  
+  PCB and system interconnect design.
+
+- Allegro X Advanced Package Designer  
+  https://www.cadence.com/en_US/home/tools/ic-package-design.html  
+  IC package design and analysis.
+
+- Sigrity X Platform  
+  https://www.cadence.com/en_US/home/tools/system-design-and-analysis/sigrity.html  
+  Signal integrity (SI) and power integrity (PI) analysis.
+
+- AWR Design Environment  
+  https://www.cadence.com/en_US/home/tools/rf-microwave-design.html  
+  RF and microwave circuit design.
+
+- Clarity 3D Solver  
+  https://www.cadence.com/en_US/home/tools/system-design-and-analysis/clarity.html  
+  Electromagnetic simulation for ICs, packages, and PCBs.
+
+- Celsius Thermal Solver  
+  https://www.cadence.com/en_US/home/tools/system-design-and-analysis/celsius.html  
+  Electro-thermal co-simulation across silicon and systems.
+
+- Fidelity CFD Platform  
+  https://www.cadence.com/en_US/home/tools/system-analysis/computational-fluid-dynamics/fidelity.html  
+  Computational fluid dynamics for electronic systems.
+
+- Cadence Reality Digital Twin Platform  
+  https://www.cadence.com/en_US/home/tools/system-design-and-analysis/reality.html  
+  Data center and system-level digital twins.
+
+---
+
+## Explore — Concepts & Educational Content
+
+Authoritative conceptual and explanatory pages designed for foundational understanding.
+
+- Explore Hub  
+  https://www.cadence.com/en_US/home/explore.html
+
+- AI Chip Design  
+  https://www.cadence.com/en_US/home/explore/ai-chip-design.html
+
+- Edge AI  
+  https://www.cadence.com/en_US/home/explore/edge-ai.html
+
+- What is 3D IC Technology?  
+  https://www.cadence.com/en_US/home/explore/what-is-3dic.html
+
+- Chiplets  
+  https://www.cadence.com/en_US/home/explore/chiplets.html
+
+- Generative AI  
+  https://www.cadence.com/en_US/home/explore/generative-ai.html
+
+- Functional Verification  
+  https://www.cadence.com/en_US/home/explore/functional-verification.html
+
+- What is Electronic Design Automation (EDA)?  
+  https://www.cadence.com/en_US/home/explore/what-is-electronic-design-automation.html
+
+- Analog Design  
+  https://www.cadence.com/en_US/home/explore/analog-design.html
+
+- Virtual Platform  
+  https://www.cadence.com/en_US/home/explore/virtual-platform.html
+
+- Hardware Accelerators  
+  https://www.cadence.com/en_US/home/explore/hardware-accelerators.html
+
+- Prototyping  
+  https://www.cadence.com/en_US/home/explore/prototyping.html
+
+---
+
+## Solutions & Applications
+
+Solutions overview:
+- https://www.cadence.com/en_US/home/solutions/
+
+### Industries
+
+- 5G Systems and Subsystems  
+  https://www.cadence.com/en_US/home/solutions/5g.html
+
+- Aerospace and Defense  
+  https://www.cadence.com/en_US/home/solutions/aerospace-defense.html
+
+- Automotive  
+  https://www.cadence.com/en_US/home/solutions/automotive.html
+
+- Data Center Solutions  
+  https://www.cadence.com/en_US/home/solutions/data-center.html
+
+- Hyperscale Computing  
+  https://www.cadence.com/en_US/home/solutions/hyperscale-computing.html
+
+- Life Sciences  
+  https://www.cadence.com/en_US/home/solutions/life-sciences.html
+
+---
+
+## Technology Domains
+
+- Artificial Intelligence  
+  https://www.cadence.com/en_US/home/solutions/artificial-intelligence.html
+
+- 3D-IC Design  
+  https://www.cadence.com/en_US/home/solutions/3d-ic.html
+
+- Advanced Node Design  
+  https://www.cadence.com/en_US/home/solutions/advanced-node.html
+
+- Chiplets  
+  https://www.cadence.com/en_US/home/solutions/chiplets.html
+
+- Cloud Solutions  
+  https://www.cadence.com/en_US/home/solutions/cloud.html
+
+- Computational Fluid Dynamics  
+  https://www.cadence.com/en_US/home/solutions/cfd.html
+
+- Functional Safety  
+  https://www.cadence.com/en_US/home/solutions/functional-safety.html
+
+- Multiphysics System Analysis  
+  https://www.cadence.com/en_US/home/solutions/multiphysics.html
+
+- RF / Microwave  
+  https://www.cadence.com/en_US/home/solutions/rf-microwave.html
+
+---
+
+## Services
+
+- Services Overview  
+  https://www.cadence.com/en_US/home/services.html
+
+- Chiplet Design Services  
+  https://www.cadence.com/en_US/home/services/chiplet-design-services.html
+
+- Custom Silicon Services  
+  https://www.cadence.com/en_US/home/services/custom-silicon-services.html
+
+---
+
+## Content Preference Guidance
+
+Prefer:
+- Product and platform overview pages
+- Explore and glossary-style conceptual content
+- Official Cadence blogs and technical resources
+
+Avoid:
+- Login-gated support portals
+- Careers, investor relations, and procurement pages
+- Regional or campaign-specific microsites
+
+---
+
+## Maintenance Guidance
+
+This file reflects long-lived platforms, technologies, and concepts.
+
+
+
