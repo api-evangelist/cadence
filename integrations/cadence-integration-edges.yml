@@ -27,6 +27,12 @@ checked:
 - https://n8n.io/integrations/cadence/
 - https://zapier.com/apps/cadence-design-systems/integrations
 - https://zapier.com/apps/cadence/integrations
+- https://a16z.com/portfolio/
+- https://www.battery.com/company/
+- https://www.battery.com/wp-admin/admin-ajax.php
+- https://www.indexventures.com/companies/
+- https://www.sequoiacap.com/our-companies/
+- https://www.sequoiacap.com/sitemap.xml
 summary: null
 marketplace_apps: []
 edges:
@@ -77,4 +83,30 @@ edges:
   detected: '2026-10-19'
   detected_by: mirror-platform-listings.py
   category: CAA / 3DEXPERIENCE partner solution
+- partner_name: Sequoia Capital
+  partner: sequoia-capital
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://sequoiacap.com/companies/cadence-design-systems
+  category: vc portfolio participation
+  contract_reference:
+    register: Sequoia Capital companies (sequoiacap.com/companies/<slug>, from the site's sitemap.xml)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: Cadence Design Systems
+    register_id: https://sequoiacap.com/companies/cadence-design-systems
+    register_country: null
+    register_website: https://www.cadence.com/
+    matched_domain: cadence.com
+    matched_by: domain
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
+      an ownership and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
 templates: []
